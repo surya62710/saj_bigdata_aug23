@@ -1,6 +1,6 @@
 
 
-==================================================================
+/*==================================================================
 
 1. Create a schema based on the given dataset
 2. Dump the data inside the hdfs in the given schema location.
@@ -16,7 +16,7 @@
 
 ================================================================
 1.Create a schema based on the given dataset
-2. Dump the data inside the hdfs in the given schema
+2. Dump the data inside the hdfs in the given schema*/
 
 create external table if not exists agent
      (SL_No int,
@@ -33,7 +33,7 @@ create external table if not exists agent
      stored as textfile
      location '/user/bigdatacloudxlab39242/adithya/agent'
      tblproperties("skip.header.line.count"="1");
-=================================================================
+/*=================================================================
 sl_no                   int                                         
 doc                     string                                      
 agent_name              string                                      
@@ -42,43 +42,43 @@ average_response_time   string
 average_resolution_time string                                      
 average_rating          decimal(10,0)                               
 total_feedback          int  
-===========================================================
+===========================================================*/
 select agent_name
 from agent
 where sum(average_rating) between 3.5 and 4
 group by agent_name
 
 
-use 
+ 
 
 
-3. List of all agents' names. 
+/*3. List of all agents' names. */
 
 select Agent_Name 
     > from agent;
-===============================================
-4. Find out agent average rating.
+/*===============================================
+4. Find out agent average rating.*/
 
 select agent_name,avg(average_rating)
     > from agent
     > group by agent_name
     > ;
-====================================================
-5.hive> 
+/*====================================================
+5.hive> */
     > select agent_name,count(doc)
     > from agent
     > group by agent_name;
-===================================================
-6.hive> 
+/*===================================================
+6.hive> */
     > select agent_name,count(total_chats)
     > from agent
     > group by agent_name;
 
 
-7.select agent_name,sum(total_feedback)
+select agent_name,sum(total_feedback)
      from agent
     group by agent_name;
 
-9,10.hive> select agent_name,average_rating
+ select agent_name,average_rating
     > from agent
     > where average_rating > 4;

@@ -1,4 +1,4 @@
-/user/bigdatacloudxlab14968/Iowa_liquor_sales
+/*/user/bigdatacloudxlab14968/Iowa_liquor_sales*/
 
 CREATE EXTERNAL TABLE IF NOT EXISTS sales_iowa
 (invoice_item_number     string,                                         

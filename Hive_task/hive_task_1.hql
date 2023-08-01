@@ -1,4 +1,4 @@
-create an external table on sale file in hive
+/*create an external table on sale file in hive
 2.create another table from this external table and put data only if sale price is less than 20
 2781268
 2.1.convert the sale in ruppes
@@ -34,7 +34,7 @@ Invoice_Item_Number string,
 
 =========================================
 creating a external table over a csv file with removing the first row in csv file
-===============================================
+===============================================*/
 CREATE EXTERNAL TABLE IF NOT EXISTS sale_liquor_iowa
       (Invoice_Item_Number string,======= 8853474
        Date_sold string, ========1867
@@ -67,15 +67,15 @@ STORED AS TEXTFILE
 LOCATION '/user/bigdatacloudxlab14968/Iowa_liquor_sales'
 tblproperties("skip.header.line.count"="1");
 
-total count=8853474
+/*total count=8853474
 =============================================================
 
-/user/bigdatacloudxlab39242
+/user/bigdatacloudxlab39242*/
 
 
  desc sale_iowa
     > ;
-OK
+/*OK
 invoice_item_number     string                                         
 date_sold               date                                        
 store_number            string                                         
@@ -105,18 +105,18 @@ Time taken: 0.152 seconds, Fetched: 24 row(s)
 
 =======================================================
 Creating table using the select Result
-=====================================================
+=====================================================*/
 create table salels_20 as
 select *,(sale_dollars * 81.29) as sale_rupees
 from sale_liquor_iowa 
 where sale_dollars<20
 
-count =2781268
+/*count =2781268
 =====================================================
 Changing the column data type
-==================================================
+==================================================*/
 ALTER TABLE slaels_20 CHANGE sale_dollars sale_dollars int;
-========================================================
+/*========================================================*/
 creating a hive partition table
 
 hive> create table part_zip (
@@ -150,7 +150,7 @@ row format delimited
 fields terminated by ',';
 
 
-Now, insert the data of salels_20 table into the partition table.
+/*Now, insert the data of salels_20 table into the partition table.*/
 
 SET hive.exec.dynamic.partition = true;
 SET hive.exec.dynamic.partition.mode = nonstrict;
@@ -162,10 +162,10 @@ from salels_20;
 
 
 
-==================================================
+/*==================================================*/
 desc formatted part_salales20;
 
-o/p:
+/*o/p:
 ----
 OK
 # col_name              data_type               comment             
@@ -306,6 +306,6 @@ group by using date_sold
 5796    19
 5840    120
 5851    37
-5862    3
+5862    3*/
 
 
