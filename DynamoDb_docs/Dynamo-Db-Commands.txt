@@ -1,0 +1,45 @@
+AWS - DynamoDb:
+
+
+
+Control Plane:
+
+Control Plane consists of operations responsible for "Creating" and "Managing" a DynamoDB table. 
+
+The operations under DynomoDB that can be used are;
+
+CreateTable: Creates a new table.
+
+DescribeTable: Provides information about the table.
+
+ListTable: Returns all the table names in your list.
+
+Delete Table: Deletes the table and all its contents from DynamoDB.
+
+======================================================================================================
+
+Data Plane:
+
+Data Plane consists of "CRUD" operation, i.e. "Create", "Read", "Update", and "Delete"
+
+options to perform different actions on your table. 
+
+Multiple operations can be done on a table. The operations here are as follows:
+
+Creating Data
+Put Item
+Batch Write Item
+Reading Data
+GetItem
+BatchGetItem
+Query
+Scan
+Updating Data
+UpdateItem
+Deleting Data
+DeleteItem
+BatchWriteItem
+
+
+
+

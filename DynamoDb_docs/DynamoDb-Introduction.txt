@@ -1,0 +1,19 @@
+Dynamo Db:
+
+Dynamo is fast and flexible nosql database.
+
+It delivers performance  at any scale and its fully managed and it is stored in SSD storage.
+
+It is taken care by Amazon.
+
+It supports two kinds of Consistency:
+
+1. Strongly Consistent read
+
+2. Eventual Consistent  read
+
+Eventual C
+
+
+
+

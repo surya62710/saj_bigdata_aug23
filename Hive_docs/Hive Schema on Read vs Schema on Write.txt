@@ -1,0 +1,26 @@
+Hive Schema on Read vs Schema on Write
+
+In traditional RDBMS a table schema is checked when we load the data. 
+
+If the data loaded and the schema does not match, then it is rejected. 
+
+This is called as Schema on write which means data is checked with schema when it written into the database.
+
+Let us take an example and look into this.
+
+When we load the data our schema is checked, suppose we have 10 columns but data is loaded using 9 columns then schema is rejected.
+
+ If first column is of INT type but first column of data is String type, then schema is rejected. 
+
+This is called as schema on write, which means when we are writing the data at that time schema is enforced.
+
+
+Hive supports Schema on read, which means data is checked with the schema when any query is issued on it. 
+
+This is similar to the HDFS Write operation, where data is written distributedly on HDFS because 
+
+we cannot check huge amount of data.
+
+We cannot check each and every record of it as it will take months to check each and every record. 
+
+This operation is fast and also improves performance.

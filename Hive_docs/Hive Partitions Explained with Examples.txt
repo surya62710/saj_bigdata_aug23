@@ -1,0 +1,78 @@
+Hive Partitions Explained with Examples:
+----------------------------------------
+Hive partitions are used to split the larger table into several smaller parts based 
+on one or multiple columns (partition key, for example, date, state e.t.c). 
+The hive partition is similar to table partitioning available in SQL server or any other
+RDBMS database tables.
+
+When you load the data into the partition table, Hive internally splits the records based 
+on the partition key and stores each partition data into a sub-directory of tables directory
+on HDFS. The name of the directory would be partition key and it’s value.
+
+
+CREATE TABLE zipcodes(
+RecordNumber int,
+Country string,
+City string,
+Zipcode int)
+PARTITIONED BY(state string)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+LOAD DATA INPATH '/data/zipcodes.csv' INTO TABLE zipcodes;
+
+Show All Partitions on Hive Table
+
+
+
+
+
+Hive Bucketing a.k.a (Clustering) is a technique to split the data into more manageable files,
+(By specifying the number of buckets to create). The value of the bucketing column will be 
+hashed by a user-defined number into buckets.
+
+Bucketing can be created on just one column, you can also create bucketing on a partitioned table 
+to further split the data to improve the query performance of the partitioned table.
+
+Each bucket is stored as a file within the table’s directory or the partitions directories on HDFS.
+
+Records with the same value in a column will always be stored in the same bucket.
+
+Hive bucketing commonly created in two scenarios.
+
+
+Create a bucket on top of the Partitioned table to further divide the table for better query performance.
+Create Bucketing on the table where you cannot choose the partition column due to (too many distinct values on columns).
+
+Hive Bucketing Advantages
+Before jumping into the Advantages of Hive bucketing, first let’s see the limitation of Partition, with the partition you cannot control the number of partitions as it creates a partition for every distinct value of the partitioned column; which ideally creates a subdirectory for each partition inside the table directory on HDFS.
+
+If you have too many distinct values on the partitioned column, you will end up with too many directories on HDFS which leads to higher maintenance for Name Node.
+
+CREATE TABLE zipcodes(
+RecordNumber int,
+Country string,
+City string,
+Zipcode int)
+PARTITIONED BY(state string)
+CLUSTERED BY (Zipcode) INTO 32 BUCKETS
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',';
+
+set hive.enforce.bucketing = true;
+
+LOAD DATA INPATH '/data/zipcodes.csv' INTO TABLE zipcodes;
+
+
+Select Data From Bucket
+Since our zipcode is partitioned on state and bucketing on zipcode, if you use these columns on where condition your query returns faster results.
+
+ELECT * FROM zipcodes WHERE state='PR' and zipcode=704;
+
+https://prod-mpc.upgrad.com/blog/bucketing-in-hive/
+
+[ very  interesting  ]
+
+https://sparkbyexamples.com/apache-hive/export-hive-table-into-csv-file-with-header/
+
+https://prwatech.in/blog/hadoop/bucketing-in-hive-with-examples/

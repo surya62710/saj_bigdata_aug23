@@ -1,0 +1,127 @@
+
+What is Python Counter?:
+
+Python Counter is a container that will hold the count of each of the elements present in the container.
+
+The counter is a sub-class available inside the dictionary class.
+
+from collections import Counter
+list1 = ['x','y','z','x','x','x','y', 'z']
+print(Counter(list1))
+
+
+Output:
+
+Counter({'x': 4, 'y': 2, 'z': 2})
+
+===================================================================================================================
+Counter with String:
+
+In Python, everything is an object and string is an object too. 
+
+Python string can be created simply by enclosing characters in the double quote. 
+
+Python does not support a character type. 
+
+These are treated as strings of length one, also considered as a substring.
+
+In the example below, a string is passed to Counter. 
+
+It returns dictionary format, with key/value pair where the key is the element and value is the count. 
+
+It also considers space as an element and gives the count of spaces in the string.
+
+Example:
+
+from collections import Counter
+my_str = "Welcome to Guru99 Tutorials!"
+print(Counter(my_str))
+Output:
+
+Counter({'o': 3, ' ': 3, 'u': 3, 'e': 2, 'l': 2, 't': 2, 'r': 2, '9': 2, 'W': 1,
+ 'c': 1, 'm': 1, 'G': 1, 'T': 1, 'i': 1, 'a': 1, 's': 1, '!': 1})
+
+
+
+====================================================================================================================
+
+When using the iterators, we need to keep track of the number of items in the iterator. 
+
+This is achieved by an in-built method called enumerate(). 
+
+The enumerate() method adds counter to the iterable.
+
+The returned object is a enumerate object. 
+
+Its syntax and parameters are described below.
+
+enumerate(iterable, start=0)
+iterable - a sequence, an iterator, or objects that supports iteration
+start – is the position in the iterator from where the counting starts.
+Default is 0.
+
+Example
+
+In the below example we take a dictionary and apply enumerate to it. 
+In the result the default start is from 0 and we get the result printed starting with counter value as zero. 
+We can also change the default start value to 5 and see a different result though the count remains same.
+
+days= { 'Mon', 'Tue', 'Wed','Thu'}
+enum_days = enumerate(days)
+print(type(enum_days))
+
+# converting it to alist
+print(list(enum_days))
+
+# changing the default counter to 5
+enum_days = enumerate(days, 5)
+print(list(enum_days))
+Output
+Running the above code gives us the following result −
+
+[(0, 'Tue'), (1, 'Thu'), (2, 'Mon'), (3, 'Wed')]
+[(5, 'Tue'), (6, 'Thu'), (7, 'Mon'), (8, 'Wed')]
+Using Loops for enumerate
+We can also use the code for looping and print the elements of the loop separately as shown in the code below.
+
+Example
+ Live Demo
+
+days= { 'Mon', 'Tue', 'Wed','Thu'}
+enum_days = enumerate(days)
+# enumearte using loop
+for enum_days in enumerate(days):
+   print(enum_days)
+
+for count,enum_days in enumerate(days,5):
+   print(count,enum_days)
+Output
+Running the above code gives us the following result −
+
+(0, 'Thu')
+(1, 'Tue')
+(2, 'Wed')
+(3, 'Mon')
+5 Thu
+6 Tue
+7 Wed
+8 Mon
+
+======================================================================================================================
+
+x = ('apple', 'banana', 'cherry')
+y = enumerate(x)
+print(list(y))
+
+
+=====================================================================================================================
+
+
+https://www.guru99.com/python-counter-collections-example.html
+
+https://www.geeksforgeeks.org/enumerate-in-python/
+
+https://www.tutorialspoint.com/enumerate-in-python
+
+
+

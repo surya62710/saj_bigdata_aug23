@@ -1,0 +1,67 @@
+DynamoDB allows users to create databases capable of storing and retrieving 
+any amount of data,and serving any amount of traffic.
+
+It automatically distributes data and traffic over servers to dynamically
+manage each customer's requests,and also maintains fast performance.
+
+DynamoDB uses a NoSQL model, which means it uses a non-relational system.
+
+
+Connect to the Source: 
+
+RDBMS      : It uses a persistent connection and SQL commands.
+
+Dynamo DB  : It uses HTTP requests and API operations.
+
+
+Create Table:
+
+RDBMS      : Its fundamental structures are tables, and must be defined.
+
+Dynamo DB  : It only uses primary keys, and no schema on creation. 
+             It uses various data sources.
+
+Get Table Info:
+
+
+RDBMS      : All table info remains accessible
+Dynamo DB  : Only primary keys are revealed.
+
+Read Table Data:
+
+RDBM		: It uses SELECT statements and filtering statements.
+Dynamo DB: It uses GetItem, Query, and Scan.
+
+
+Manage Indexes:
+RDBMS:Tt uses standard indexes created through SQL statements. Modifications to it occur automatically on table changes.
+Dynamo DB :t uses a secondary index to achieve the same function. It requires specifications (partition key and sort key).
+
+
+Modify Table Data:
+RDBMS    :  It uses an UPDATE statement.
+Dynamo DB:  uses an UpdateItem operation.
+
+Delete Tabl Data:
+RDMBS :It uses a DELETE statement.
+NoSQL :It uses a DeleteItem operation.
+
+Delete a Table:
+
+RDBMS: 	It uses a DROP TABLE statement.
+Nosql:	It uses a DeleteTable operation.
+
+Advantages:
+The two main advantages of DynamoDB are scalability and flexibility. 
+It does not force the use of a particular data source and structure.
+It also allows simple use of multiple languages: Ruby, Java, Python, C#, Erlang, PHP, and Perl.
+
+Limitations:
+Capacity Unit Sizes − A read capacity unit is a single consistent read per second for items no larger than 4KB.
+A write capacity unit is a single write per second for items no bigger than 1KB.
+
+
+
+
+
+

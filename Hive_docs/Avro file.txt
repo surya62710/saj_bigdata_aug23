@@ -1,0 +1,26 @@
+Avro file
+
+
+Apache Avro is a data serialization system. Avro provides:
+
+Rich data structures.
+
+A compact, fast, binary data format.
+
+A container file, to store persistent data.
+
+Remote procedure call (RPC).
+
+Simple integration with dynamic languages. Code generation is not required to read or write data files nor to use or implement RPC protocols. 
+
+Code generation as an optional optimization, only worth implementing for statically typed languages.
+
+The Avro data source supports:
+
+Schema conversion: Automatic conversion between Apache Spark SQL and Avro records.
+
+Partitioning: Easily reading and writing partitioned data without any extra configuration.
+
+Compression: Compression to use when writing Avro out to disk. The supported types are uncompressed, snappy, and deflate. You can also specify the deflate level.
+
+Record names: Record name and namespace by passing a map of parameters with recordName and recordNamespace

@@ -1,0 +1,113 @@
+PySpark DataFrame
+
+DataFrame is a distributed collection of data organized into named columns. 
+
+It is conceptually equivalent to a table in a relational database or a data frame in R/Python,
+
+but with richer optimizations under the hood. DataFrames can be constructed from a wide array 
+
+of sources such as structured data files, tables in Hive, external databases, or existing RDDs.
+
+
+Is PySpark faster than pandas?
+
+Due to parallel execution on all cores on multiple machines, PySpark runs operations faster then pandas.
+
+In other words, pandas DataFrames run operations on a single node whereas PySpark runs on multiple machines.
+
+
+DataFrame creation:
+
+Simplest way to create an DataFrame is from a Python list of data. 
+
+DataFrame can also be created from an RDD and by reading a files from several sources.
+
+using createDataFrame():
+
+By using createDataFrame() function of the SparkSession you can create a DataFrame.
+
+
+data = [('James','','Smith','1991-04-01','M',3000),
+  ('Michael','Rose','','2000-05-19','M',4000),
+  ('Robert','','Williams','1978-09-05','M',4000),
+  ('Maria','Anne','Jones','1967-12-01','F',4000),
+  ('Jen','Mary','Brown','1980-02-17','F',-1)
+]
+
+
+columns = ["firstname","middlename","lastname","dob","gender","salary"]
+
+df = spark.createDataFrame(data=data, schema = columns)
+
+Since DataFrame’s are structure format which contains names and column, 
+
+we can get the schema of the DataFrame using df.printSchema()
+
+=====================================================================================
+
+
+data = [('James','','Smith','1991-04-01','M',3000),
+  ('Michael','Rose','','2000-05-19','M',4000),
+  ('Robert','','Williams','1978-09-05','M',4000),
+  ('Maria','Anne','Jones','1967-12-01','F',4000),
+  ('Jen','Mary','Brown','1980-02-17','F',-1)
+]
+
+columns = ["firstname","middlename","lastname","dob","gender","salary"]
+
+df = spark.createDataFrame(data=data, schema = columns)
+
+df.show() shows the 20 elements from the DataFrame.
+
+===================================================================================
+
+DataFrame operations:
+
+Like RDD, DataFrame also has operations like Transformations and Actions.
+
+DataFrame from external data sources
+
+In realtime applications, DataFrame’s are created from external sources like files from the local system, HDFS, S3 Azure, HBase, MySQL table e.t.c. 
+
+Below is an example of how to read a csv file from a local system.
+
+
+df = spark.read.csv("/tmp/resources/zipcodes.csv")
+
+df.printSchema()
+
+======================================================================================================================
+
+Create DataFrame from RDD
+
+
+
+
+url  to download
+
+https://www.uszipcodeslist.net/sample/us_zip_codes/v3/CSV/sample_us_zipcodes.csv
+
+================================================================================
+
+Supported file formats:
+
+DataFrame has a rich set of API which supports reading and writing several file formats
+
+csv
+text
+Avro
+Parquet
+tsv
+xml and many more
+
+
+================================================================================
+
+
+
+
+
+
+
+
+

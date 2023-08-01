@@ -1,0 +1,44 @@
+What is PySpark Accumulator?
+
+Accumulators are write-only  variables where only tasks that are running on workers are allowed to update 
+
+only the driver program is allowed to access the Accumulator variable using the value property.
+
+
+How to create Accumulator variable in PySpark?
+
+Using accumulator() from SparkContext class we can create an Accumulator in PySpark programming.
+
+Users can also create Accumulators for custom types using AccumulatorParam class of PySpark.
+
+sparkContext.accumulator() is used to define accumulator variables.
+
+add() function is used to add/update a value in accumulator
+
+value property on the accumulator variable is used to retrieve the value from the accumulator.
+
+accum=sc.accumulator(0)
+rdd=spark.sparkContext.parallelize([1,2,3,4,5])
+rdd.foreach(lambda x:accum.add(x))
+print(accum.value) #Accessed by driver
+
+
+Here, we have created an accumulator variable accum using spark.sparkContext.accumulator(0) with initial value 0.
+
+Later, we are iterating each element in an rdd using foreach() action and adding each element of rdd to accum variable. 
+
+Finally, we are getting accumulator value using accum.value property.
+
+Note that, In this example, rdd.foreach() is executed on workers and accum.value is called from PySpark driver program.
+
+
+import pyspark
+from pyspark.sql import SparkSession
+spark=SparkSession.builder.appName("accumulator").getOrCreate()
+
+accum=spark.sparkContext.accumulator(10)
+rdd=spark.sparkContext.parallelize([1,2,3,4,5])
+rdd.foreach(lambda x:accum.add(x))
+print(accum.value)
+
+
