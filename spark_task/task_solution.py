@@ -1,6 +1,6 @@
-df.1.Create a dataframe on the sales data
-2.find  out the count of sale in the particular year of each categeory
-3.write the output into the parquet file.
+//df.1.Create a dataframe on the sales data
+//2.find  out the count of sale in the particular year of each categeory
+//3.write the output into the parquet file.
 ========================================================
 import pyspark
 import pyspark.sql.functions
