@@ -1,0 +1,129 @@
+ CREATE EXTERNAL TABLE IF NOT EXISTS vehical_saj_data
+     (ORDERNUMBER int,
+     QUANTITYORDERED int,
+     PRICEEACH string,
+     ORDERLINENUMBER int,
+     SALES int,
+     STATUS string,
+     QTR_ID int,                   
+     MONTH_ID int,
+     YEAR_ID string,
+     PRODUCTLINE string,
+     MSRP int,
+     PRODUCTCODE string,
+     PHONE int,
+     CITY string,
+     STATE string,
+     POSTALCODE int,
+     COUNTRY string,
+     TERRITORY string,
+     CONTACTLASTNAME string,
+     CONTACTFIRSTNAME string,
+     DEALSIZE string)
+     ROW FORMAT DELIMITED
+     FIELDS TERMINATED BY ','
+     LINES TERMINATED BY '\n'
+     STORED AS TEXTFILE
+     LOCATION '/user/bigdatacloudxlab39242/adithya/sales_saj_order'
+     tblproperties("skip.header.line.count"="1");
+========================================================
+1.creating orc table
+
+CREATE TABLE SALE_ORC
+     STORED AS ORC
+     AS SELECT * FROM vehical_saj_data;
+2.
+hive> select year_id,sum(sales)
+    > from sale_orc
+    > group by year_id;
+
+3.hive> select productline,count(productcode)
+    > from sale_orc
+    > group by productline;
+
+Classic Cars    967
+Motorcycles     331
+Planes  306
+Ships   234
+Trains  77
+Trucks and Buses        301
+Vintage Cars    607
+
+select productline
+from sale_orc
+where productcode=(select max(productcode) from sale_orc);
+
+to find the in which quater min sales 
+==============================================
+with cte as (select qtr_id,sum(sales) as total_sale
+      from sale_orc
+      group by qtr_id)
+select qtr_id, total_sale
+from cte
+where total_sale IN (select min(total_sale) from cte);
+
+OK
+3       1758673
+===========================================================
+
+In which country sales was maximum and in which country sales was minimum
+
+with saj as(Select country,sum(sales) as total_sale
+    from sale_orc
+    group by country)
+select country,total_sale
+from saj
+where total_sale in (select min(total_sale) from saj)
+
+OK
+Ireland 57749
+
+max
+----
+OK
+USA     3627511
+========================================================
+Calculate quartelry sales for each city
+
+select qtr_id,city,sum(sales)as total_sales
+from sale_orc
+group by qtr_id,city;
+
+OK
+1       Bergamo 56172
+1       Boras   31603
+1       Brickhaven      31470
+1       Brisbane        16116
+1       Bruxelles       18798
+1       Burbank 37847
+1       Burlingame      13529
+1       Cambridge       21780
+1       Charleroi       16626
+1       Cowes   26903
+1       Dublin  38781
+1       Espoo   51364
+1       Frankfurt       48694
+1       Gensve  50427
+1       Glendale        3987
+1       Graz    8773
+1       Helsinki        26420
+1       Kobenhavn       58866
+1       Lille   20174
+1       London  8476
+========================================
+Find a month for each year in which maximum number of 
+quantities were sold
+
+with saj as(Select month_id,max(QUANTITYORDERED) as qtntysold
+        from sale_orc
+         group by month_id)
+select month_id
+from saj
+where qtntysold 
+in (select max(qtntysold) from saj)
+
+OK
+4
+
+
+
